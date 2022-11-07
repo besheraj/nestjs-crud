@@ -19,14 +19,14 @@ export class UserService {
     }
   }
 
-  async getUser(query: UserDetails, limit) {
+  async getUser(query: UserDetails) {
     try {
       const user = await this.userModel
         .find(query)
         .sort({
           createdAt: 'desc',
         })
-        .limit(limit)
+        .limit(query.limit)
         .maxTimeMS(5000)
         .exec();
 
@@ -64,4 +64,5 @@ interface UserDetails {
   email: string;
   phoneNumber: string;
   country: string;
+  limit?: number
 }
