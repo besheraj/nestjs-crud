@@ -23,7 +23,7 @@ export class UserController {
   @ApiTags('User Apis')
   @ApiResponse({ status: 200 })
   @ApiResponse({ status: 400, type: ApiErrorDto })
-  async getUsers(@Query() query: GetUserDto) {
+  async getUsers(@Query() query?: GetUserDto) {
     try {
       return this.userService.getUser(query);
     } catch (e) {
