@@ -3,22 +3,32 @@ import {IsNotEmpty, IsOptional} from 'class-validator';
 
 export class GetUserDto {
     @ApiProperty()
+    @IsOptional()
     firstName: string;
 
     @ApiProperty()
+    @IsOptional()
     lastName: string;
 
     @ApiProperty()
+    @IsOptional()
     userId: string;
 
     @ApiProperty()
+    @IsOptional()
     email: string;
 
     @ApiProperty()
+    @IsOptional()
     phoneNumber: string;
 
     @ApiProperty()
+    @IsOptional()
     country: string;
+
+    @ApiProperty()
+    @IsOptional()
+    _id: string;
 
     @ApiProperty()
     @IsOptional()

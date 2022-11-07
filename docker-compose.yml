@@ -1,0 +1,29 @@
+version: "3.8"
+networks:
+  local_dev:
+services:
+  nestjs:
+    container_name: "nestjs"
+    networks:
+      - local_dev
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app/
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env.development
+    ports:
+      - "8100:8100"
+
+  mongo:
+    container_name: mongo
+    networks:
+      - local_dev
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example

@@ -15,7 +15,7 @@ import { ApiErrorDto } from 'src/dto/error.dto';
 import { CreateUserDto, GetUserDto, UpdateUserDto } from 'src/dto/user.dto';
 import { UserService } from './user.service';
 
-@Controller()
+@Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
 
@@ -47,9 +47,9 @@ export class UserController {
   @ApiTags('User Apis')
   @ApiResponse({ status: 200 })
   @ApiResponse({ status: 400, type: ApiErrorDto })
-  async UpdateUser(@Body() body: UpdateUserDto, @Param() id: string) {
+  async UpdateUser(@Body() body: UpdateUserDto, @Param("id") id: string) {
     try {
-      return this.userService.updateUser(id,body);
+      return this.userService.updateUser(id, body);
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
     }
@@ -59,7 +59,7 @@ export class UserController {
   @ApiTags('User Apis')
   @ApiResponse({ status: 200 })
   @ApiResponse({ status: 400, type: ApiErrorDto })
-  async DeleteUser(@Param() id: string) {
+  async DeleteUser(@Param("id") id: string) {
     try {
       return this.userService.deleteUser(id);
     } catch (e) {
